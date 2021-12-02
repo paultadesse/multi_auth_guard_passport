@@ -30,7 +30,7 @@ class LoginController extends Controller
 
             $user = User::select('users.*')->find(auth()->guard('user')->user()->id);
             $success =  $user;
-            $success['token'] =  $user->createToken('MyApp',['user'])->accessToken;
+            $success['token'] =  $user->createToken('MyApp',['userPrevilage'])->accessToken;
 
             return response()->json($success, 200);
         }else{
@@ -56,7 +56,7 @@ class LoginController extends Controller
 
             $admin = Admin::select('admins.*')->find(auth()->guard('admin')->user()->id);
             $success =  $admin;
-            $success['token'] =  $admin->createToken('MyApp',['admin','user'])->accessToken;
+            $success['token'] =  $admin->createToken('MyApp',['adminPrevilage','userPrevilage'])->accessToken;
 
             return response()->json($success, 200);
         }else{
